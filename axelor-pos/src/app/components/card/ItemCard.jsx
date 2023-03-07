@@ -5,7 +5,7 @@ import CardImage from "./CardImage";
 
 const ItemCard = ({ cardTitle, image, itemPrice }) => {
   return (
-    <Card style={{ padding: "16px" }}>
+    <Card className="p-3">
       <CardImage image={image} />
       <Card.Body>
         <Card.Title>{cardTitle}</Card.Title>
