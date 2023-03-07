@@ -1,0 +1,47 @@
+<>
+      {/* <pre>{JSON.stringify(formValues, undefined, 2)}</pre> */}
+      <div className="form-container">
+        <form onSubmit={handleSubmit}>
+          <h1>Login Form</h1>
+          <hr />
+          <div className="field">
+            <label className="field-label">Username :</label>
+            <input
+              type="text"
+              name="userName"
+              placeholder="Enter your Username"
+              value={formValues.userName}
+              onChange={handleChange}
+            />
+          </div>
+          <p>{formErrors.userName}</p>
+          <div className="field">
+            <label>Email :</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your E-mail Id"
+              value={formValues.email}
+              onChange={handleChange}
+            />
+          </div>
+          <p>{formErrors.email}</p>
+
+          <div className="field">
+            <label>Password :</label>
+            <input
+              type="text"
+              name="password"
+              placeholder="Enter your Password"
+              value={formValues.email}
+              onChange={handleChange}
+            />
+          </div>
+          <p>{formErrors.password}</p>
+
+          <div className="btn">
+            <button className="btn">Submit</button>
+          </div>
+        </form>
+      </div>
+    </>

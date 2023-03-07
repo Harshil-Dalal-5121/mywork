@@ -1,0 +1,15 @@
+#fir {
+    color: blue;
+    font-size: 200%;
+  }
+
+  #sec {
+    color: rgb(255, 17, 0);
+  }
+
+  .red{
+    color:magenta;
+  }
+  .bg-blue{
+    background-color: blue;
+  }

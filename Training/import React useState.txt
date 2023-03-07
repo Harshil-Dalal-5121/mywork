@@ -1,0 +1,95 @@
+import React, { useState } from "react";
+
+import Buttons from "../button/Buttons";
+
+import styles from "./CalenderBody.module.css";
+
+export const CalenderBody = () => {
+  const [date, setDate] = useState(new Date());
+
+  const prevMonth = () => {
+    setDate(new Date(date.getFullYear(), date.getMonth() - 1, 1));
+  };
+
+  const nextMonth = () => {
+    setDate(new Date(date.getFullYear(), date.getMonth() + 1, 1));
+  };
+
+  const daysInMonth = (year, month) => {
+    return new Date(year, month + 1, 0).getDate();
+  };
+
+  const firstDayOfMonth = (year, month) => {
+    return new Date(year, month, 1).getDay();
+  };
+
+  const numberOfDaysInCurrentMonth = daysInMonth(
+    date.getFullYear(),
+    date.getMonth()
+  );
+  const firstDayOfCurrentMonth = firstDayOfMonth(
+    date.getFullYear(),
+    date.getMonth()
+  );
+  const generateCalendarRows = (
+    numberOfDaysInCurrentMonth,
+    firstDayOfCurrentMonth
+  ) => {
+    const numberOfRows = Math.ceil(
+      (numberOfDaysInCurrentMonth + firstDayOfCurrentMonth) / 7
+    );
+
+    return Array.from({ length: numberOfRows }, (_, rowIndex) => {
+      const daysInRow = Array.from({ length: 7 }, (_, cellIndex) => {
+        const dayOfMonth =
+          rowIndex * 7 + cellIndex - firstDayOfCurrentMonth + 1;
+
+        if (dayOfMonth > 0 && dayOfMonth <= numberOfDaysInCurrentMonth) {
+          return <td key={cellIndex}>{dayOfMonth}</td>;
+        }
+
+        return <td />;
+      });
+
+      return <tr>{daysInRow}</tr>;
+    });
+  };
+
+  const calendarRows = generateCalendarRows(
+    numberOfDaysInCurrentMonth,
+    firstDayOfCurrentMonth
+  );
+
+  // let rowsInCalender = [];
+  // let cellsInCalender = [];
+
+  // for (let i = 1; i <= firstDayOfCurrentMonth; i++) {
+  //   cellsInCalender.push(<td />);
+  // }
+
+  // for (let i = 1; i <= numberOfDaysInCurrentMonth; i++) {
+  //   cellsInCalender.push(<td className={styles["date-cells"]}>{i}</td>);
+  //   if ((i + firstDayOfCurrentMonth) % 7 === 0) {
+  //     rowsInCalender.push(<tr>{cellsInCalender}</tr>);
+  //     cellsInCalender = [];
+  //   }
+  // }
+  // rowsInCalender.push(<tr>{cellsInCalender}</tr>);
+
+  return (
+    <>
+      <tbody>{calendarRows}</tbody>
+      <tr>
+        <td colSpan="2">
+          <Buttons onClick={prevMonth} name="Previous Month" />
+        </td>
+        <td colSpan="3">
+          {date.toLocaleString("default", { month: "long" })}{" "}
+          {date.getFullYear()}
+        </td>
+        <td colSpan="2">
+          <Buttons onClick={nextMonth} name="Next Month" />
+        </td>
+      </tr>
+    </>
+  );

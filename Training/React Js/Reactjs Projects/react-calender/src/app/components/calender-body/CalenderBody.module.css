@@ -1,0 +1,19 @@
+table {
+    border: 25px solid rgb(206, 218, 230);
+    font-size: 2em;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+}
+
+.date-cells:hover {
+    background-color: rgb(229, 229, 128);
+}
+
+.date-cells:nth-child(1) {
+    color: rgb(255, 45, 45);
+}
+
+.date-cells:nth-child(6) {
+    color: rgb(75, 198, 75);
+}

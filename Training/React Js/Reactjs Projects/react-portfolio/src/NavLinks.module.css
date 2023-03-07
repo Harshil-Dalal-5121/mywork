@@ -1,0 +1,16 @@
+.list {
+    text-align: right;
+}
+
+.listitem {
+    display: inline-block;
+    margin: 25px;
+    text-decoration: none;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0, 1);
+    transform: scale(1, 1);
+    color: white;
+}
+
+.listitem:hover {
+    transform: scale(1.25, 1.25);
+}

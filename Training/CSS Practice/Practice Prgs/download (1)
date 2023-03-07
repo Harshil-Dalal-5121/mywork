@@ -1,0 +1,4 @@
+hello<html><body align='center'>
+<h1>Welcome to servlet</h1>
+<form>
+<input type='text' name='name' placeholder='name'> &nbsp; <input type='submit' name='submit'></form></body></html>

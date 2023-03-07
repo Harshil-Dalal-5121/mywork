@@ -1,0 +1,43 @@
+function Calendar({ year, month }) {
+  // Calculate the number of days in the current month
+  const currentMonthDays = new Date(year, month + 1, 0).getDate();
+
+  // Calculate the index of the first day of the month (0 = Sunday, 1 = Monday, etc.)
+  const firstDayIndex = new Date(year, month, 1).getDay();
+
+  // Create an array of days in the month, with empty cells for days before the first day of the month
+  const days = [...Array(firstDayIndex).fill(''), ...Array(currentMonthDays).fill().map((_, i) => i + 1)];
+
+  // Split the array into rows of 7 days each
+  const rows = [];
+  while (days.length > 0) {
+    rows.push(days.splice(0, 7));
+    console.log(rows)
+  }
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Sun</th>
+          <th>Mon</th>
+          <th>Tue</th>
+          <th>Wed</th>
+          <th>Thu</th>
+          <th>Fri</th>
+          <th>Sat</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row, i) => (
+          <tr key={i}>
+            {row.map((day, j) => (
+              <td key={j}>{day}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+

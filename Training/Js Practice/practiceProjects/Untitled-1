@@ -1,0 +1,13 @@
+// const prev = document.createElement("button");
+// prev.innerHTML = "<===========";
+// prev.setAttribute("onclick", "change_mon('prev')");
+// prev.setAttribute("class", "btn");
+
+// const next = document.createElement("button");
+// next.innerHTML = "===========>";
+// next.setAttribute("onclick", "change_mon('next')");
+// next.setAttribute("class", "btn");
+
+
+// table.appendChild(prev);
+// table.appendChild(next);

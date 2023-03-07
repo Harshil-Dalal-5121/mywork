@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans&display=swap" rel="stylesheet">
+    <title>Calender</title>
+    <style>
+        * {
+            padding: 0;
+            font-family: 'Quattrocento Sans', sans-serif;
+        }
+
+        table {
+            border: 1px solid rgb(206, 218, 230);
+            border-collapse: collapse;
+
+        }
+
+        th {
+            padding: 10px 20px;
+            width: 50px;
+            height: 25px;
+        }
+
+        th:hover {
+            background-color: aqua;
+        }
+
+        td {
+            padding: 10px 20px;
+            width: 50px;
+            height: 25px;
+            text-align: center;
+        }
+
+        td.date:hover {
+            background-color: rgb(229, 229, 128);
+        }
+
+        td.date:nth-child(1) {
+            color: rgb(255, 45, 45)
+        }
+
+        td.date:nth-child(6) {
+            color: rgb(75, 198, 75);
+        }
+
+        td.curr_month {
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        var table = document.createElement("table");
+        document.body.appendChild(table);
+        var thead = document.createElement("thead");
+        var th = document.createElement("th");
+        const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+        for (let i = 0; i < days.length; i++) {
+            var th = document.createElement("th");
+            th.append(days[i]);
+            thead.appendChild(th);
+        }
+
+        thead.appendChild(th);
+        table.appendChild(thead);
+        table.setAttribute("border", "1");
+        tbody = document.createElement("tbody");
+        table.appendChild(tbody);
+
+        let today = new Date(); //for perfect output st 2020,1
+        let currentMonth = today.getMonth();
+        let currentYear = today.getFullYear();
+        showCalendar(currentMonth, currentYear);
+
+        function change_mon(a) {
+
+            if (a === "next") {
+                currentMonth = today.getMonth() + 1;
+                showCalendar(currentMonth, currentYear);
+            } else if (a === "prev") {
+                currentMonth = today.getMonth() - 1;
+                showCalendar(currentMonth, currentYear);
+            }
+
+        }
+
+        function showCalendar() {
+            tbody.innerHTML = "";
+            let start = (new Date(currentYear, currentMonth)).getDay();//gives  the first day of the month of th 
+            today.setMonth(currentMonth + 1, 0);//When we set the paramenter to 0,it gives the last date of the month
+            let end = today.getDate();
+            var day = 1;
+
+            for (i = 0; i < 35; i++) {
+
+                if (i % 7 == 0) {
+                    var tr = document.createElement("tr");
+                    tbody.appendChild(tr);
+                    // console.log(i);
+                }
+
+                if (i >= start && day <= end) {
+
+                    var td = document.createElement("td");
+                    td.setAttribute("class", "date")
+                    td.innerHTML = `${day}`
+                    day++;
+                    tr.appendChild(td);
+                    // conole.log(i);
+                }
+
+                else {
+                    let td = document.createElement("td");
+                    td.setAttribute("class", "blanck");
+                    tr.appendChild(td);
+                    // console.log(i);
+                }
+            }
+
+            const mon = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+            var tr = document.createElement("tr");
+            var td = document.createElement("td");
+            var td1 = document.createElement("td");
+            var td2 = document.createElement("td");
+
+            const prev = document.createElement("button");
+            prev.innerHTML = "<===========";
+            td1.setAttribute("colspan", "2");
+            prev.setAttribute("onclick", "change_mon('prev')");
+            prev.setAttribute("class", "btn");
+            td1.appendChild(prev);
+            tr.appendChild(td1);
+
+            const next = document.createElement("button");
+            next.innerHTML = "===========>";
+            next.setAttribute("onclick", "change_mon('next')");
+            td2.setAttribute("colspan", "2");
+            next.setAttribute("class", "btn");
+            td2.appendChild(next);
+            tr.appendChild(td2);
+
+            td.setAttribute("class", "curr_month");
+            td.setAttribute("colspan", "3");
+            td.innerHTML = `${mon[currentMonth]} ${currentYear}`;
+           
+            tr.appendChild(td1)
+            tr.appendChild(td)
+            tr.appendChild(td2)
+
+            tbody.appendChild(tr);
+        }
+        // const prev = document.createElement("button");
+        // prev.innerHTML = "<===========";
+        // prev.setAttribute("onclick", "change_mon('prev')");
+        // prev.setAttribute("class", "btn");
+
+        // const next = document.createElement("button");
+        // next.innerHTML = "===========>";
+        // next.setAttribute("onclick", "change_mon('next')");
+        // next.setAttribute("class", "btn");
+
+
+        // table.appendChild(prev);
+        // table.appendChild(next);
+
+
+    </script>
+</body>
+
+</html>
