@@ -2,9 +2,9 @@ import React from "react";
 
 import Navbar from "react-bootstrap/Navbar";
 
-const AxelorNavbar = () => {
+const PosNavbar = () => {
   return (
-    <Navbar sticky="top" bg="light" variant="light">
+    <Navbar sticky="top" bg="dark" variant="dark">
       <Navbar.Brand href="#home" className="mx-2 py-3">
         Axelor POS
       </Navbar.Brand>
@@ -12,4 +12,4 @@ const AxelorNavbar = () => {
   );
 };
 
-export default AxelorNavbar;
+export default PosNavbar;
