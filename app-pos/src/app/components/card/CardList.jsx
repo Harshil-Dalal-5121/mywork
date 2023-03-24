@@ -1,21 +1,23 @@
 import React from "react";
-import ItemCard from "./ItemCard";
-import { Row } from "react-bootstrap";
-import { Col } from "react-bootstrap";
 
-const CardList = ({ data, addToCart }) => {
+import { Row, Col } from "react-bootstrap";
+
+import ItemCard from "./ItemCard";
+
+const CardList = ({ data, onAdd }) => {
+  console.log("data >>>", data);
   return (
     <>
       <Row xs={2} md={4} lg={6}>
         {data.map((card) => (
-          <Col>
+          <Col key={card.id}>
             <ItemCard
               key={card.id}
               image={card.image}
               cardTitle={card.cardTitle}
               itemPrice={card.itemPrice}
               item={card}
-              addToCart={addToCart}
+              onAdd={onAdd}
             />
           </Col>
         ))}
